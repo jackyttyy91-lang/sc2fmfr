@@ -15,13 +15,13 @@ var day = "";
 
 var game =
 {
-    scrap: new Decimal(5.81e421),
+    scrap: new Decimal(1e100000),
     scrapThisPrestige: new Decimal(0),
     mergesThisPrestige: 0,
     highestScrapReached: new Decimal(0),
     highestBarrelReached: 0,
     highestMasteryLevel: 0,
-    magnets: new Decimal(1e100),
+    magnets: new Decimal(1e100000),
     remainderMagnets: 0,
     dimension: 0,
     glitchesCollected: 0,
@@ -34,7 +34,7 @@ var game =
 
     goldenScrap:
     {
-        amount: new Decimal(1e100),
+        amount: new Decimal(1e100000),
         upgrades:
         {
             scrapBoost: new GoldenScrapUpgrade(
@@ -356,7 +356,7 @@ var game =
                 level => Decimal.min(10, level + 3),
                 level => Decimal.pow(0.85, level),
                 {
-                    maxLevel: 25,
+                    maxLevel: 50,
                     getEffectDisplay: effectDisplayTemplates.percentStandard(1)
                 }
             ),
@@ -365,7 +365,7 @@ var game =
                 level => Decimal.pow(0.9675, level).mul(2).mul(applyUpgrade(game.tires.upgrades[2][1]))
                     .div(applyUpgrade(game.magnetUpgrades.autoMerger)).div((game.skillTree.upgrades.fasterAutoMerge.level / 2) + 1).mul(applyUpgrade(game.supernova.cosmicUpgrades.fasterAutoMerge)),
                 {
-                    maxLevel: 40,
+                    maxLevel: 100,
                     getEffectDisplay: effectDisplayTemplates.numberStandard(2, "", "s")
                 }
             ),
@@ -404,8 +404,8 @@ var game =
                         if (game.supernova.cosmicUpgrades.mythusMultiBuy.level > 0) game.solarSystem.upgrades.mythus.level += 9;
                     },
                     afterBuy: () => {
-                        if (game.solarSystem.upgrades.mythus.level == 0 && game.highestBarrelReached < 3009 && !game.settings.hyperBuy) {
-                            alert("You have to reach barrel 3010 to upgrade this planet!");
+                        if (game.solarSystem.upgrades.mythus.level == 0 && game.highestBarrelReached < 2999 && !game.settings.hyperBuy) {
+                            alert("You have to reach barrel 3000 to upgrade this planet!");
                         }
                         else {
                             try {
@@ -416,7 +416,7 @@ var game =
                             }
                         }
                     },
-                    integral: level => new Decimal(3010 + (50 * level)).sub(game.skillTree.upgrades.cheaperMythus.level * 2).add(applyUpgrade(game.supernova.alienDustUpgrades.aquila)),
+                    integral: level => new Decimal(3000 + (50 * level)).sub(game.skillTree.upgrades.cheaperMythus.level * 2).add(applyUpgrade(game.supernova.alienDustUpgrades.aquila)),
                 }
             ),
 
@@ -481,8 +481,8 @@ var game =
     mergeQuests:
     {
         isUnlocked: () => game.highestScrapReached.gte(1e93),
-        quests: [new MergeQuest(300, [0, 1, 2]), new MergeQuest(450, [0, 1, 2, 3]), new MergeQuest(600, [2, 3, 4])],
-        dailyQuest: new MergeQuest(12000, [5]),
+        quests: [new MergeQuest(20, [0, 1, 2]), new MergeQuest(30, [0, 1, 2, 3]), new MergeQuest(60, [0, 1, 2, 3, 4])],
+        dailyQuest: new MergeQuest(15000, [5]),
         mergeTokens: new Decimal(1e16),
         scrapyard: 1,
         scrapyardProgress: 0,
@@ -794,7 +794,7 @@ var game =
     fragment:
     {
         isUnlocked: () => game.highestBarrelReached >= 99,
-        amount: new Decimal(1e15),
+        amount: new Decimal(1e100000),
         upgrades:
         {
             scrapBoost: new FragmentUpgrade(
@@ -816,7 +816,7 @@ var game =
     darkscrap:
     {
         isUnlocked: () => game.solarSystem.upgrades.earth.level >= EarthLevels.SECOND_DIMENSION,
-        amount: new Decimal(0),
+        amount: new Decimal(1e100000),
         upgrades:
         {
             darkScrapBoost: new DarkScrapUpgrade(
@@ -859,7 +859,7 @@ var game =
     darkfragment:
     {
         isUnlocked: () => game.solarSystem.upgrades.earth.level >= EarthLevels.SECOND_DIMENSION,
-        amount: new Decimal(0),
+        amount: new Decimal(1e100000),
         upgrades:
         {
             scrapBoost: new DarkFragmentUpgrade(
