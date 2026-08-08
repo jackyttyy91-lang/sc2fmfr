@@ -3,7 +3,7 @@ class MergeQuest {
         this.barrelLvl = -1;
         this.possibleTiers = possibleTiers;
         this.currentMerges = 0;
-        this.neededMerges = 500;
+        this.neededMerges = 100;
         this.reward = new Decimal(0);
         this.active = false;
         this.cooldown = cooldown;
@@ -29,9 +29,9 @@ class MergeQuest {
         else this.barrelLvl = (calcTime * (28643 * calcTime)) % BARRELS; // Amount of barrels - daily can be any barrel
 
         // merges/token:  100, 125, 125, 125, 100, 40
-        this.neededMerges = [100, 250, 500, 1000, 2500, 10000][tier];
-        if (this.neededMerges < 10000) this.reward = new Decimal(Math.floor([1, 2, 4, 8, 25, 250][tier] * applyUpgrade(game.darkscrap.upgrades.mergeTokenBoost) * (1 + applyUpgrade(game.skillTree.upgrades.moreMergeTokens)))).mul(applyUpgrade(game.supernova.alienDustUpgrades.triangulum)).mul(applyUpgrade(game.screws.upgrades.moreMergeTokens)).round();
-        else this.reward = new Decimal(Math.floor([1, 2, 4, 8, 25, 250][tier] * applyUpgrade(game.darkscrap.upgrades.mergeTokenBoost) * (1 + applyUpgrade(game.skillTree.upgrades.moreMergeTokens)) / applyUpgrade(game.bricks.upgrades.questSpeed).mul(applyUpgrade(game.tires.upgrades[1][2])).toNumber())).mul(applyUpgrade(game.supernova.alienDustUpgrades.triangulum)).mul(applyUpgrade(game.screws.upgrades.moreMergeTokens)).round();
+        this.neededMerges = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 20, 25, 30, 35, 45, 50, 67, 69, 70, 75, 90, 98, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 2000, 2500, 3000, 4000, 5000, 6000, 7000, 7500, 8000, 9000, 10000, 50000, 100000, 500000, 1000000, 5000000][tier];
+        if (this.neededMerges < 5000000) this.reward = new Decimal(Math.floor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100, 500, 1000, 5000, 10000, 50000][tier] * applyUpgrade(game.darkscrap.upgrades.mergeTokenBoost) * (1 + applyUpgrade(game.skillTree.upgrades.moreMergeTokens)))).mul(applyUpgrade(game.supernova.alienDustUpgrades.triangulum)).mul(applyUpgrade(game.screws.upgrades.moreMergeTokens)).round();
+        else this.reward = new Decimal(Math.floor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100, 500, 1000, 5000, 10000, 50000][tier] * applyUpgrade(game.darkscrap.upgrades.mergeTokenBoost) * (1 + applyUpgrade(game.skillTree.upgrades.moreMergeTokens)) / applyUpgrade(game.bricks.upgrades.questSpeed).mul(applyUpgrade(game.tires.upgrades[1][2])).toNumber())).mul(applyUpgrade(game.supernova.alienDustUpgrades.triangulum)).mul(applyUpgrade(game.screws.upgrades.moreMergeTokens)).round();
 
         this.active = true;
         this.currentCooldown = 0;
