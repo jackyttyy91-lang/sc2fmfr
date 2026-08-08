@@ -15,13 +15,13 @@ var day = "";
 
 var game =
 {
-    scrap: new Decimal(0),
+    scrap: new Decimal(5.81e421),
     scrapThisPrestige: new Decimal(0),
     mergesThisPrestige: 0,
     highestScrapReached: new Decimal(0),
     highestBarrelReached: 0,
     highestMasteryLevel: 0,
-    magnets: new Decimal(0),
+    magnets: new Decimal(1e100),
     remainderMagnets: 0,
     dimension: 0,
     glitchesCollected: 0,
@@ -34,7 +34,7 @@ var game =
 
     goldenScrap:
     {
-        amount: new Decimal(0),
+        amount: new Decimal(1e100),
         upgrades:
         {
             scrapBoost: new GoldenScrapUpgrade(
@@ -483,7 +483,7 @@ var game =
         isUnlocked: () => game.highestScrapReached.gte(1e93),
         quests: [new MergeQuest(300, [0, 1, 2]), new MergeQuest(450, [0, 1, 2, 3]), new MergeQuest(600, [2, 3, 4])],
         dailyQuest: new MergeQuest(12000, [5]),
-        mergeTokens: new Decimal(0),
+        mergeTokens: new Decimal(1e16),
         scrapyard: 1,
         scrapyardProgress: 0,
         nextDaily: 20220721,
@@ -571,7 +571,7 @@ var game =
     },
     bricks:
     {
-        amount: new Decimal(0),
+        amount: new Decimal(1e100000),
         productionLevel: new Decimal(0),
         currentMergeProgress: 0,
         mergesPerLevel: () => Math.max(8, Math.round((250 * applyUpgrade(game.tires.upgrades[0][1]).toNumber() * applyUpgrade(game.magnetUpgrades.brickSpeed).toNumber() / (1 + game.skillTree.upgrades.fasterBricks.level / 100) / (1 + applyUpgrade(game.screws.upgrades.fasterBricks) / 100)) * ((0.75 * game.reinforcedbeams.upgrades.reinforcedbricks.level) + 1))),
@@ -666,7 +666,7 @@ var game =
     },
     tires:
     {
-        amount: new Decimal(0),
+        amount: new Decimal(1e100000),
         value: new Decimal(1),
         isUnlocked: () => game.highestBarrelReached >= 499,
         time: 600,
@@ -794,7 +794,7 @@ var game =
     fragment:
     {
         isUnlocked: () => game.highestBarrelReached >= 99,
-        amount: new Decimal(0),
+        amount: new Decimal(1e15),
         upgrades:
         {
             scrapBoost: new FragmentUpgrade(
